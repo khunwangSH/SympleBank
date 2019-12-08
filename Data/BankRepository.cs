@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using SimpleBank.Data.Entities;
+using SimpleBank.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,15 @@ namespace SimpleBank.Data
 {
     public class BankRepository : IBankRepository
     {
-        private ApplicationDbContext _ctx { get; set; }
-        public ILogger<BankRepository> _logger { get; set; }
+        private readonly ApplicationDbContext _ctx;
+        private readonly ILogger<BankRepository> _logger;
+        private readonly UserManager<BankUser> _userManager;
 
-        public BankRepository(ApplicationDbContext ctx, ILogger<BankRepository> logger)
+        public BankRepository(ApplicationDbContext ctx, ILogger<BankRepository> logger, UserManager<BankUser> userManager)
         {
             _ctx = ctx;
             _logger = logger;
+            _userManager = userManager;
         }
 
         public void AddEntity(object model)
@@ -49,6 +53,23 @@ namespace SimpleBank.Data
         public BankAccount GetBankAccountById(string username, int id)
         {
             return _ctx.BankAccounts.Where(w => w.Id == id && w.User.UserName == username).FirstOrDefault();
+        }
+
+        public IEnumerable<BankUserViewModel> GetAllBankUser()
+        {
+            return _userManager.Users
+                    .Where(w => w.UserName != "admin" && w.IsActive == true)
+                    .Select(s => new BankUserViewModel { 
+                        UserId = s.Id,
+                        FirstName = s.FirstName,
+                        LastName = s.LastName
+                    })
+                    .ToList();
+        }
+
+        public bool SaveAll()
+        {
+            return _ctx.SaveChanges() > 0;
         }
     }
 }

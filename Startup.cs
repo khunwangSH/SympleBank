@@ -12,6 +12,9 @@ using SimpleBank.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleBank.Data.Entities;
+using System.Reflection;
+using AutoMapper;
 
 namespace SimpleBank
 {
@@ -30,8 +33,17 @@ namespace SimpleBank
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+
+            services.AddIdentity<BankUser,IdentityRole>(options => options.User.RequireUniqueEmail = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAuthentication()
+                    .AddCookie();
+
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddScoped<IBankRepository, BankRepository>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

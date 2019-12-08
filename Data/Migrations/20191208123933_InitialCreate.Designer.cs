@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleBank.Data;
 
 namespace SimpleBank.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191208123933_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,22 +46,6 @@ namespace SimpleBank.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "b468a8b8-64fc-4290-b88b-14080a10f22a",
-                            ConcurrencyStamp = "9c9a1208-1cf8-4d32-b5ef-a6ae26af0a90",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "7ae9b4a5-265a-4d60-8815-10008e465adc",
-                            ConcurrencyStamp = "0719c01b-6c3a-43fa-aead-893397ade691",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -269,68 +255,6 @@ namespace SimpleBank.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "46457b21-644e-4893-bf7f-f8b6be5f2190",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "689bd7c8-7034-4df1-8b7d-f13ecea78cb6",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "admin",
-                            IsActive = true,
-                            LastName = "admin",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA+18oo/dGyP51394ncMhQx9EClv+w30nBqrUujrm+j/2tBnkgDRdK/vqIRyAAOqgA==",
-                            PhoneNumber = "123456789",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "31fd357f-51ce-4847-bdb6-dd923649e024",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        },
-                        new
-                        {
-                            Id = "41a97ea0-7c5b-4e1b-b2af-bf8f9a371b52",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e71edaaf-396b-4655-a362-814ef8158c9d",
-                            Email = "john@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "John",
-                            IsActive = true,
-                            LastName = "Smith",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "JOHN@GMAIL.COM",
-                            NormalizedUserName = "JOHN_SM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEA4rvapnkbE1lXiwT92ORauZt5DaMHO0HIKLXFU2fCvSKSBwSUDfE8xV8gs0bf9qvA==",
-                            PhoneNumber = "123456789",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b821725d-b7b7-441f-982f-83137d3e0e85",
-                            TwoFactorEnabled = false,
-                            UserName = "john"
-                        },
-                        new
-                        {
-                            Id = "92decd29-4634-45ef-b27d-1acf23537f1b",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d9509746-f775-4281-9f02-513748cd794f",
-                            Email = "daniel@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Daniel",
-                            IsActive = true,
-                            LastName = "McCadole",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "DANIEL@GMAIL.COM",
-                            NormalizedUserName = "DANIEL_MC",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPzIawRAl8+ga1v5NNTC+LndpWwc2ed1Or9Q/6IfUmcv10/k40d13Mhf62qx1Fg2+g==",
-                            PhoneNumber = "123456789",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d472f50-eae7-4a2f-8ca9-02e33a41b283",
-                            TwoFactorEnabled = false,
-                            UserName = "daniel"
-                        });
                 });
 
             modelBuilder.Entity("SimpleBank.Data.Entities.Transaction", b =>

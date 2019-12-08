@@ -23,7 +23,7 @@ namespace SimpleBank.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult CreateAccount()
         {
             return View();
         }

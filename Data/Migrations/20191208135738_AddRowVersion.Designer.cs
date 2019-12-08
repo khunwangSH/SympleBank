@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleBank.Data;
 
 namespace SimpleBank.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191208135738_AddRowVersion")]
+    partial class AddRowVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace SimpleBank.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "19c1c4e2-6486-489e-a576-2a4e604bfa5d",
-                            ConcurrencyStamp = "d79d35b1-6a52-413f-9633-c5bca14f1e45",
+                            Id = "befafd16-4304-49da-aa78-3e17d6effad3",
+                            ConcurrencyStamp = "22b6baec-5ea1-4e35-b38d-207dec1c133f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "6bd06417-4707-47bf-bff9-4cc2e3e23397",
-                            ConcurrencyStamp = "74ad38cc-a36f-4ed5-8fe5-aeed78e5277a",
+                            Id = "c6a264bf-b787-4353-82f2-4176c9c43ef6",
+                            ConcurrencyStamp = "2a525193-db82-410a-9308-f1e076cd6528",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -206,12 +208,7 @@ namespace SimpleBank.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("BankAccounts");
                 });
@@ -295,9 +292,9 @@ namespace SimpleBank.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d51a15f-ed7c-4cbc-a3ee-87609034efe3",
+                            Id = "1cee3cfd-50af-4f42-a312-2822a7c59191",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d3a9d65-2915-4c35-8c74-574ce9e7c674",
+                            ConcurrencyStamp = "93ca445e-4719-4d6a-948d-af327dda5750",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -306,18 +303,18 @@ namespace SimpleBank.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOhKJZJPIfL4n+ABYtVJfrqrDTuhJ8xnW3jCncvIH3uEgwozasIWsm3/FIU48Bz6Og==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIevcHpiDN5fenTPAKFfq3vIbTqSrhp6t2P4l1TJ3/6izN3W/jXvOr4xyHPnitdQQQ==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9d93f209-6a51-4b68-b274-4e877f1d6cd6",
+                            SecurityStamp = "497c7708-0eb9-460e-9c4d-efb913c381ce",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         },
                         new
                         {
-                            Id = "ddeb8812-6080-42e8-99c7-0f5277245fc9",
+                            Id = "ba60d58f-b128-4c5c-9e37-f214e90a5c57",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7fd4fa46-20a8-4e58-9395-c92879054f2e",
+                            ConcurrencyStamp = "29506ce8-dfde-4071-9f87-e3b60fbde57b",
                             Email = "john@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -326,18 +323,18 @@ namespace SimpleBank.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "JOHN@GMAIL.COM",
                             NormalizedUserName = "JOHN_SM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEgrbWAoy2XUkSnbebmvIqRk78SUo9VcXi5cidxJlRV8NYL56nCsq0mJWqrYaORfdw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHlEJDwUVCrMQeV4YHLiMpRFOHub2fP0YDX8cofqaIeZVo30VhtIngfEnNS321PRbA==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fc513613-74ef-48af-9a0e-00d3d0500795",
+                            SecurityStamp = "1f541ef9-4a86-4674-934b-bb40d7529b57",
                             TwoFactorEnabled = false,
                             UserName = "john"
                         },
                         new
                         {
-                            Id = "ebe210c2-17a0-49b0-a49f-c76ffba82afa",
+                            Id = "628ce010-1ced-4980-8a6f-e7663ae05282",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "6095b0ad-6b08-4524-b6ff-59df1cbad5bc",
+                            ConcurrencyStamp = "361e5e6b-fc1a-4ccc-bd0d-dcdb76b9a8bf",
                             Email = "daniel@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Daniel",
@@ -346,10 +343,10 @@ namespace SimpleBank.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DANIEL@GMAIL.COM",
                             NormalizedUserName = "DANIEL_MC",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBhkzfIZ2LR3EuSvYL2T9nUcsb5BrmtCgLUTHDkL9RrlLn2UNHyN7TeXFd8S2iHzmw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB6eYcV2i8U3/SsBdTbzDNXtCLYGIocr/I7VDOKtJ/rObMu42uVb/5FlRavbYGmTfA==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8dc5f3d3-f594-438e-81b6-add6233da625",
+                            SecurityStamp = "427025f6-17a4-4962-a452-1646d902221f",
                             TwoFactorEnabled = false,
                             UserName = "daniel"
                         });
@@ -450,13 +447,6 @@ namespace SimpleBank.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SimpleBank.Data.Entities.BankAccount", b =>
-                {
-                    b.HasOne("SimpleBank.Data.Entities.BankUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SimpleBank.Data.Entities.Transaction", b =>

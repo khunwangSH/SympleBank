@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SimpleBank.Data.Entities
 {
-    public class BaseEntity
+    public class BaseEntity : ITrackable
     {
-        DateTime CreatedAt { get; set; }
-        string CreatedBy { get; set; }
-        DateTime LastUpdatedAt { get; set; }
-        string LastUpdatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime LastUpdatedAt { get; set; }
+        public string LastUpdatedBy { get; set; }
     }
 }

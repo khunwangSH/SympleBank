@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,5 +18,10 @@ namespace SimpleBank.Data.Entities
         public string Name { get; set; }
         public double Balance { get; set; }
         public AccountStatus Status { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
+        public BankUser User { get; set; }
     }
 }

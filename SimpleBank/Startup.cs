@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using SimpleBank.Data.Entities;
 using System.Reflection;
 using AutoMapper;
+using SimpleBank.Services;
 
 namespace SimpleBank
 {
@@ -43,6 +44,8 @@ namespace SimpleBank
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IBankRepository, BankRepository>();
+
+            services.AddSingleton<IIBANService, IBANService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

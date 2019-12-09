@@ -1,7 +1,48 @@
-﻿
+﻿@model TransactionViewModel
 @{
     ViewData["Title"] = "Transfer";
+    var items = (IEnumerable<BankAccount>)ViewBag.Accounts;
 }
 
-<h1>Transfer</h1>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>@ViewData["Title"]</h1>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+            <div class="text-success">@ViewBag.Msg</div>
+            <div class="form-group">
+                <label asp-for="SenderAccId">From Account : </label>
+                <select asp-for="SenderAccId" class="form-control">
+                    @foreach (var item in items)
+                    {
+                    <option value="@item.Id">@item.IBAN (Balance : @item.Balance)</option>
+                    }
+                </select>
+                <span asp-validation-for="SenderAccId" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecieverAccId">To Account : </label>
+                <select asp-for="RecieverAccId" class="form-control">
+                    @foreach (var item in items)
+                    {
+                        <option value="@item.Id">@item.IBAN (Balance : @item.Balance)</option>
+                    }
+                </select>
+                <span asp-validation-for="RecieverAccId" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Amount">Amount :</label>
+                <input asp-for="Amount" type="number" min="0.00" step=".01" class="form-control" />
+                <span asp-validation-for="Amount" class="text-warning"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Transfer" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
 

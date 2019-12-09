@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace SimpleBank.Services
 {
-    public class IBANService
+    public class IBANService : IIBANService
     {
-        public static bool Validate(string IBAN)
+        public IBANService()
+        {
+
+        }
+        public  bool Validate(string IBAN)
         {
             IBAN = IBAN.ToUpper(); 
             if (String.IsNullOrEmpty(IBAN))

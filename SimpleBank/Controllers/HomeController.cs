@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using SimpleBank.Data;
 using SimpleBank.Data.Entities;
 using SimpleBank.Models;
+using SimpleBank.Services;
 
 namespace SimpleBank.Controllers
 {
@@ -17,11 +18,16 @@ namespace SimpleBank.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IBankRepository _repository;
         private readonly IMapper _mapper;
-        public HomeController(ILogger<HomeController> logger, IBankRepository repository, IMapper mapper)
+        private readonly IIBANService _ibanService;
+        public HomeController(ILogger<HomeController> logger, 
+                            IBankRepository repository, 
+                            IMapper mapper,
+                            IIBANService ibanService)
         {
             _logger = logger;
             _repository = repository;
             _mapper = mapper;
+            _ibanService = ibanService;
         }
 
         public IActionResult Index()
@@ -42,7 +48,11 @@ namespace SimpleBank.Controllers
             ViewBag.BankUsers = allusers;
             if(ModelState.IsValid)
             {
-                if(!_repository.IsIBANNumberExist(model.IBAN))
+                if(!_ibanService.Validate(model.IBAN))
+                {
+                    ModelState.AddModelError("", "This IBAN is invalid!");
+                }
+                else if(!_repository.IsIBANNumberExist(model.IBAN))
                 {
                     var newAccount = _mapper.Map<BankAccountViewModel, BankAccount>(model);
 

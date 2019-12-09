@@ -16,7 +16,10 @@ namespace SimpleBank.Data
                .ForMember(o => o.Id, ex => ex.MapFrom(o => o.Id))
                .ReverseMap();
 
-           
+
+            CreateMap<Transaction, TransactionViewModel>()
+               .ForMember(o => o.Id, ex => ex.MapFrom(o => o.Id))
+               .ReverseMap();
         }
     }
 }

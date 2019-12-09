@@ -47,7 +47,7 @@ namespace SimpleBank.Controllers
                     var newAccount = _mapper.Map<BankAccountViewModel, BankAccount>(model);
 
                     newAccount.User = _repository.GetBankUserById(model.UserId);
-
+                    newAccount.Status = AccountStatus.Open;
                     _repository.AddEntity(newAccount);
                     if (_repository.SaveAll())
                     {

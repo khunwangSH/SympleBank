@@ -9,7 +9,7 @@ namespace SimpleBank.Data
 {
     public interface IBankRepository
     {
-
+        void UpdateEntity(object model);
          void AddEntity(object model);
 
         void CreateAccount(BankAccount newAccount);
@@ -23,6 +23,7 @@ namespace SimpleBank.Data
 
          BankAccount GetBankAccountById(string username, int id);
 
+        IEnumerable<BankAccount> GetAllBankAccountOpened();
         IEnumerable<BankUserViewModel> GetAllBankUser();
         BankUser GetBankUserById(string id);
         bool IsIBANNumberExist(string IBAN);

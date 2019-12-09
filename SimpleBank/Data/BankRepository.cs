@@ -22,6 +22,10 @@ namespace SimpleBank.Data
             _userManager = userManager;
         }
 
+        public void UpdateEntity(object model)
+        {
+            _ctx.Update(model);
+        }
         public void AddEntity(object model)
         {
             _ctx.Add(model);
@@ -82,6 +86,12 @@ namespace SimpleBank.Data
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0;
+        }
+
+        public IEnumerable<BankAccount> GetAllBankAccountOpened()
+        {
+            return _ctx.BankAccounts.Where(w => w.Status == AccountStatus.Open);
+                    
         }
     }
 }
